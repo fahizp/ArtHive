@@ -20,7 +20,10 @@ module.exports = {
         'black-100': '#252525',
         'primary-purple': '#9747FF',
         'gray-50': '#D9D9D9',
-        'footer-black': '#1d262d'
+        'footer-black': '#1d262d',
+        "nav-button": '#0F73EE',
+        "skyblue": "#f2faff",
+        "bdr-gray": "#bac8d3"
       },
       boxShadow: {
         menu: '0px 159px 95px rgba(13,12,34,0.01), 0px 71px 71px rgba(13,12,34,0.02), 0px 18px 39px rgba(13,12,34,0.02), 0px 0px 0px rgba(13,12,34,0.02)',
