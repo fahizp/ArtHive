@@ -8,6 +8,7 @@ import FormField from './FormField';
 import Button from './Button';
 import CustomMenu from './CustomMenu';
 import { categoryFilters } from '@/constant';
+import {  createNewProject, fetchToken } from '@/lib/actions';
 import { FormState, ProjectInterface, SessionInterface } from '@/common.types';
 
 type Props = {
@@ -17,30 +18,75 @@ type Props = {
 }
 
 const ProjectForm = ({ type, session, project }: Props) => {
+    const router = useRouter()
 
-  const router = useRouter()
+    const [submitting, setSubmitting] = useState<boolean>(false);
+    const [form, setForm] = useState<FormState>({
+        title: project?.title || "",
+        description: project?.description || "",
+        image: project?.image || "",
+        liveSiteUrl: project?.liveSiteUrl || "",
+        githubUrl: project?.githubUrl || "",
+        category: project?.category || ""
+    })
 
-  const [submitting, setSubmitting] = useState<boolean>(false);
-  const [form, setForm] = useState<FormState>({
-      title: project?.title || "",
-      description: project?.description || "",
-      image: project?.image || "",
-      liveSiteUrl: project?.liveSiteUrl || "",
-      githubUrl: project?.githubUrl || "",
-      category: project?.category || ""
-  })
+    const handleStateChange = (fieldName: keyof FormState, value: string) => {
+        setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
+    };
 
-  const handleStateChange = (fieldName: keyof FormState, value: string) => {
- 
-  };
+    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
 
-  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-  };
+        const file = e.target.files?.[0];
 
-  const handleFormSubmit = async (e: FormEvent) => { }
+        if (!file) return;
 
-  return (
-    <form
+        if (!file.type.includes('image')) {
+            alert('Please upload an image!');
+
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+            const result = reader.result as string;
+
+            handleStateChange("image", result)
+        };
+    };
+
+    const handleFormSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+
+        setSubmitting(true)
+
+        const { token } = await fetchToken()
+
+        try {
+            if (type === "create") {
+                await createNewProject(form, session?.user?.id, token)
+
+                router.push("/")
+            }
+            
+            // if (type === "edit") {
+            //     await updateProject(form, project?.id as string, token)
+
+            //     router.push("/")
+            // }
+
+        } catch (error) {
+            alert(`Failed to ${type === "create" ? "create" : "edit"} a project. Try again!`);
+        } finally {
+            setSubmitting(false)
+        }
+    }
+
+    return (
+        <form
         onSubmit={handleFormSubmit}
         className="flexStart form">
         <div className="flexStart form_image-container">
@@ -112,7 +158,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
             />
         </div>
     </form>
-)
+    )
 }
 
 export default ProjectForm
