@@ -91,7 +91,7 @@ body {
 
 /* Custom Menu */
 .custom_menu-btn {
-  @apply gap-4 w-full rounded-md bg-light-white-100 p-4 text-base outline-none capitalize;
+  @apply gap-4 w-full rounded-md bg-blue-50 p-4 text-base outline-none capitalize;
 }
 
 .custom_menu-items {
@@ -117,7 +117,7 @@ body {
 
 /* Form Field */
 .form_field-input {
-  @apply w-full outline-0 bg-light-white-100 rounded-md p-4;
+  @apply w-full outline-0 bg-blue-50 rounded-md p-4;
 }
 
 /* Modal */
@@ -154,7 +154,7 @@ body {
 }
 
 .form_image-label {
-  @apply z-10 text-center w-full h-full p-20 text-gray-100 border-2 border-gray-50 border-dashed;
+  @apply z-10 text-center w-full h-full p-20 text-gray-100 border-2 border-blue-200 border-dashed;
 }
 
 .form_image-input {
@@ -164,4 +164,11 @@ body {
 /* Profile Projects */
 .profile_projects {
   @apply grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-5;
+}
+
+.create_gradient {
+  background-image: linear-gradient(to bottom, #5151ef, #3e63f4, #2d72f6, #2580f6, #2c8cf4);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
