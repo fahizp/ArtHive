@@ -36,7 +36,7 @@ We welcome contributions! Fork, create a branch, commit changes, and open a pull
 
 ## Feedback
 
-Have feedback or questions? [Open an issue](https://github.com/yourusername/arthive/issues)!
+Have feedback or questions? [Open an issue](https://github.com/fahizp/arthive/issues)!
 
 ---
 
