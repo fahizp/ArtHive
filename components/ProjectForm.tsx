@@ -8,7 +8,7 @@ import FormField from './FormField';
 import Button from './Button';
 import CustomMenu from './CustomMenu';
 import { categoryFilters } from '@/constant';
-import {  createNewProject, fetchToken } from '@/lib/actions';
+import {  createNewProject, fetchToken, updateProject } from '@/lib/actions';
 import { FormState, ProjectInterface, SessionInterface } from '@/common.types';
 
 type Props = {
@@ -72,11 +72,11 @@ const ProjectForm = ({ type, session, project }: Props) => {
                 router.push("/")
             }
             
-            // if (type === "edit") {
-            //     await updateProject(form, project?.id as string, token)
+            if (type === "edit") {
+                await updateProject(form, project?.id as string, token)
 
-            //     router.push("/")
-            // }
+                router.push("/")
+            }
 
         } catch (error) {
             alert(`Failed to ${type === "create" ? "create" : "edit"} a project. Try again!`);
@@ -127,19 +127,12 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
         <FormField
             type="url"
-            title="Website URL"
+            title="Social URL"
             state={form.liveSiteUrl}
-            placeholder="https://fahiz.in"
+            placeholder="https://www.linkedin.com/in/fahizp"
             setState={(value) => handleStateChange('liveSiteUrl', value)}
         />
 
-        <FormField
-            type="url"
-            title="GitHub URL"
-            state={form.githubUrl}
-            placeholder="https://github.com/fahizp3"
-            setState={(value) => handleStateChange('githubUrl', value)}
-        />
 
         <CustomMenu
             title="Category"
