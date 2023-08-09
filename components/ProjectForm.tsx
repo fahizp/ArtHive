@@ -133,6 +133,14 @@ const ProjectForm = ({ type, session, project }: Props) => {
             setState={(value) => handleStateChange('liveSiteUrl', value)}
         />
 
+        <FormField
+            type="url"
+            title="Download URL"
+            state={form.githubUrl}
+            placeholder="https://drive.google.com"
+            setState={(value) => handleStateChange('githubUrl', value)}
+        />
+
 
         <CustomMenu
             title="Category"
