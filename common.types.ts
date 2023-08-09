@@ -63,9 +63,9 @@ export interface ProjectForm {
 }
 
 export interface AdapterUser {
-  id: string;
-  email: string;
-  name: string;
-  image: string;
-  emailVerified: Date | null;
-}
+    id: string;
+    email: string;
+    name: string;
+    image: string;
+    emailVerified: Date | null;
+  }
