@@ -61,3 +61,11 @@ export interface ProjectForm {
   githubUrl: string;
   category: string;
 }
+
+export interface AdapterUser {
+  id: string;
+  email: string;
+  name: string;
+  image: string;
+  emailVerified: Date | null;
+}
