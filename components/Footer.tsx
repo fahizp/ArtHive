@@ -45,7 +45,7 @@ const Footer = () => {
             <Image src="/logo-w.svg" width={116} height={38} alt="logo" />
             <p className="text-start text-sm font-normal mt-5 max-w-xs">
               ArtHive is the world&apos;s leading community for creatives to
-              Share, grow, and get paid.
+              share, grow, and get paid.
             </p>
           </div>
         </div>
